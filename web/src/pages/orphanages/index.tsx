@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import '../../styles/pages/orphanages.css';
 
 const mapIcon = Leaflet.icon({
@@ -22,8 +21,14 @@ function index() {
           <img src={mapMarkerImg} alt="Happy" />
 
 
-          <h2>Escolha um orfanato no mapa.</h2>
-          <p>Muitas crianças estão esperando a sua visita ;)</p>
+          <h2>
+            Veja uma ocorrência ou 
+            Crie uma no Mapa.
+          </h2>
+          <p>
+            Cuidar da sua cidade é importante! Não esqueça as fotos
+            e os relatos.
+          </p>
         </header>
 
 

@@ -5,8 +5,8 @@
 }
 
 body {
-  color: #FFF;
-  background-color: #EBF2F5;
+  color: rgb(255, 255, 255);
+  background-color: #F5F8F5;
 }
 
 body, input, button, textarea {
