@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import mapMarkerImg from '../../assets/map.svg';
 import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Leaflet from 'leaflet';
 import '../../styles/pages/orphanages.css';
+import api from '../../services/api';
 
 const mapIcon = Leaflet.icon({
   iconUrl: mapMarkerImg,
@@ -13,7 +14,23 @@ const mapIcon = Leaflet.icon({
   popupAnchor: [171, 1]
 })
 
-function index() {
+interface OrphanageProps {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
+function Index() {
+  const [orphanages, setOrphanages] = useState<OrphanageProps[]>([])
+
+  useEffect(() => {
+    api.get('/orphanages').then(response => {
+      setOrphanages(response.data);
+    })
+  }, []);
+
+
   return (
     <div id="page--orphanages">
       <aside>
@@ -47,20 +64,26 @@ function index() {
 
         <TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_KEY_MAP}`} />
 
-        < Marker
-          icon={mapIcon}
-          position={[-5.0841814, -42.8073696]}
-        >
-          <Popup closeButton={false} 
-            minWidth={240} 
-            maxWidth={240} 
-            className='map--popup'>
-            Lar das Meninas
-            <Link to="/orphanages/1" >
-              <FiArrowRight size={22} color='#FFF' />
-            </Link>
-          </Popup>
-        </Marker>
+        {orphanages.map(orphanage => {
+          return (
+            < Marker
+              icon={mapIcon}
+              position={[orphanage.latitude, orphanage.longitude]}
+              key={orphanage.id}
+            >
+              <Popup 
+                closeButton={false} 
+                minWidth={240} 
+                maxWidth={240} 
+                className='map--popup'>
+                  {orphanage.name}
+                <Link to={`/orphanages/${orphanage.id}`} >
+                  <FiArrowRight size={22} color='#FFF' />
+                </Link>
+              </Popup>
+            </Marker>
+          );
+        })}
       </Map>
 
 
@@ -71,4 +94,4 @@ function index() {
   )
 }
 
-export default index
+export default Index
