@@ -4,7 +4,7 @@ import '../../styles/pages/landing.css';
 import logoImg from '../../assets/logo.svg';
 import { FiArrowRight } from 'react-icons/fi';
 
-export default function index() {
+export default function Index() {
   return (
     <div id="page--landing">
       <div className="content--wrapper">
@@ -17,7 +17,7 @@ export default function index() {
           <strong>Teresina</strong>
           <span>Piauí</span>
         </div>
-        <Link to="/orfanatos" className="enter--app" >
+        <Link to="/app" className="enter--app" >
           <FiArrowRight size={24} color="rgba(0,0,0,0.6)" />
         </Link>
       </div>
