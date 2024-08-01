@@ -1,2 +1,2 @@
-# Happy-app-Teresina-PI--Rocktseat
+# Happy-app-Rocktseat
 Projeto da NLW#3-Rocktseat
